@@ -15,8 +15,6 @@ The code for my elective project, supervised by [Michele Coscia](https://www.mic
     - [Exploratory Data Analysis](#exploratory-data-analysis)
   - [Issues](#issues)
 
-<!-- [scripts/littlesis-graph-exploration.ipynb](scripts/littlesis-graph-exploration.ipynb) is a good place to start if you want to explore the data. -->
-
 ### Data
 
 The only data included in the repository is the voteview data. This can also be downloaded from [voteview.com](https://voteview.com/) and save it as [data/sources/voteview-HS117_members.csv](data/sources/voteview-HS117_members.csv).
