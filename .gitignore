@@ -9,3 +9,6 @@ data/nvd/*.csv
 data/sources/*.json
 data/temporary/*.json
 data/temporary/*.csv
+
+# Coding experiments
+DonorIdeo/misc.ipynb
