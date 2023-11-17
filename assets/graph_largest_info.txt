@@ -1,0 +1,230 @@
+File generated at 2023-11-17 17:10:45.030598 
+Basic info: 
+Number of nodes: 354538 
+Number of edges: 1677720 
+Number of connected components: 1 
+1. Size of the connected component: 100.00% 
+
+Top 20 nodes based on pagerank: 
+1.	(13503)		Barack Obama	0.00406 
+2.	(88818)		Eni SpA	0.00246 
+3.	(28862)		Democratic National Committee	0.00235 
+4.	(13191)		Hillary Clinton	0.00218 
+5.	(34136)		Mitt Romney	0.00214 
+6.	(28776)		George W Bush	0.00213 
+7.	(28778)		Republican National Committee	0.00189 
+8.	(13377)		John Kerry	0.00186 
+9.	(13443)		John S. McCain III	0.00167 
+10.	(28856)		Democratic Senatorial Campaign Committee	0.00130 
+11.	(52792)		Labour Party	0.00124 
+12.	(52797)		Liberal Democrats	0.00120 
+13.	(52788)		UK Independence Party - UKIP	0.00113 
+14.	(66860)		Walton Family Foundation Inc	0.00111 
+15.	(52794)		Conservative Party	0.00103 
+16.	(28803)		National Republican Congressional Committee	0.00103 
+17.	(28799)		National Republican Senatorial Committee	0.00093 
+18.	(41893)		Heartland Institute	0.00093 
+19.	(13575)		Chuck Schumer	0.00089 
+20.	(12884)		US House of Representatives	0.00081 
+
+Ranking only politicians from the DATABASE: 
+1.	Republican		(34136)		Mitt Romney: 0.00214 
+2.	Democrat		(13575)		Chuck Schumer: 0.00089 
+3.	Democrat		(13047)		Joe Biden: 0.00047 
+4.	Republican		(13450)		Mitch McConnell: 0.00047 
+5.	Democrat		(13302)		Kirsten Gillibrand: 0.00043 
+6.	Republican		(91622)		Marco Rubio: 0.00039 
+7.	Democrat		(13284)		Dianne Feinstein: 0.00036 
+8.	Democrat		(13152)		Maria Cantwell: 0.00035 
+9.	Republican		(13731)		Rob Portman: 0.00035 
+10.	Democrat		(39820)		Elizabeth Warren: 0.00034 
+11.	Democrat		(34457)		Mark Warner: 0.00032 
+12.	Republican		(13212)		John Cornyn: 0.00031 
+13.	Democrat		(13610)		Debbie Stabenow: 0.00029 
+14.	Democrat		(13490)		Patty Murray: 0.00029 
+15.	Republican		(13799)		Pat Toomey: 0.00028 
+16.	Democrat		(13173)		Bob Casey: 0.00028 
+17.	Republican		(96583)		Ted Cruz: 0.00026 
+18.	Republican		(13632)		John Thune: 0.00026 
+19.	Democrat		(38250)		Michael Bennet: 0.00026 
+20.	Democrat		(13468)		Bob Menendez: 0.00026 
+21.	Democrat		(13261)		Dick Durbin: 0.00026 
+22.	Democrat		(13127)		Sherrod Brown: 0.00026 
+23.	Democrat		(34240)		Jeanne Shaheen: 0.00026 
+24.	Democrat		(96579)		Tim Kaine: 0.00025 
+25.	Democrat		(13388)		Amy Klobuchar: 0.00024 
+26.	Republican		(13082)		Roy Blunt: 0.00024 
+27.	Democrat		(78907)		Jon Tester: 0.00023 
+28.	Democrat		(13676)		Ron Wyden: 0.00023 
+29.	Republican		(13310)		Lindsey Graham: 0.00022 
+30.	Other		(13568)		Bernie Sanders: 0.00022 
+31.	Democrat		(13438)		Ed Markey: 0.00022 
+32.	Republican		(13137)		Richard Burr: 0.00022 
+33.	Republican		(13587)		Richard Shelby: 0.00022 
+34.	Republican		(13204)		Susan Collins: 0.00021 
+35.	Democrat		(12987)		Tammy Baldwin: 0.00019 
+36.	Democrat		(13407)		Patrick Leahy: 0.00018 
+37.	Democrat		(13158)		Ben Cardin: 0.00018 
+38.	Republican		(13312)		Chuck Grassley: 0.00017 
+39.	Democrat		(13666)		Sheldon Whitehouse: 0.00017 
+40.	Democrat		(35528)		Tammy Duckworth: 0.00017 
+41.	Democrat		(47994)		Cory Booker: 0.00016 
+42.	Democrat		(13166)		Tom Carper: 0.00015 
+43.	Republican		(91598)		Ron Johnson: 0.00015 
+44.	Democrat		(13537)		Jack Reed: 0.00015 
+45.	Republican		(13485)		Lisa Murkowski: 0.00014 
+46.	Democrat		(13487)		Chris Murphy: 0.00014 
+47.	Democrat		(13348)		Steny Hoyer: 0.00013 
+48.	Democrat		(13642)		Chris Van Hollen: 0.00013 
+49.	Democrat		(92446)		Kamala Harris: 0.00013 
+50.	Democrat		(13516)		Nancy Pelosi: 0.00012 
+51.	Democrat		(91560)		Richard Blumenthal: 0.00012 
+52.	Republican		(13582)		Pete Sessions: 0.00012 
+53.	Democrat		(13435)		Carolyn Maloney: 0.00012 
+54.	Republican		(117824)		Tom Cotton: 0.00012 
+55.	Republican		(13445)		Kevin McCarthy: 0.00012 
+56.	Democrat		(13336)		Brian Higgins: 0.00012 
+57.	Democrat		(31196)		Gary Peters: 0.00012 
+58.	Democrat		(13292)		Bill Foster: 0.00012 
+59.	Republican		(143892)		Dan Sullivan: 0.00011 
+60.	Democrat		(30905)		Jeff Merkley: 0.00011 
+61.	Democrat		(34472)		Joe Manchin: 0.00011 
+62.	Democrat		(91493)		Chris Coons: 0.00010 
+63.	Republican		(91627)		Tim Scott: 0.00010 
+64.	Republican		(13155)		Shelley Moore Capito: 0.00010 
+65.	Democrat		(284886)		Charlie Crist: 0.00010 
+66.	Democrat		(32397)		Martin Heinrich: 0.00010 
+67.	Democrat		(13573)		Adam Schiff: 0.00009 
+68.	Republican		(284861)		Joni Ernst: 0.00009 
+69.	Democrat		(29177)		Jim Himes: 0.00009 
+70.	Democrat		(13494)		Jerry Nadler: 0.00009 
+71.	Republican		(13219)		Mike Crapo: 0.00009 
+72.	Democrat		(114182)		Catherine Cortez Masto: 0.00009 
+73.	Republican		(13353)		Jim Inhofe: 0.00009 
+74.	Democrat		(13209)		Jim Cooper: 0.00008 
+75.	Republican		(13668)		Roger Wicker: 0.00008 
+76.	Democrat		(13654)		Debbie Wasserman Schultz: 0.00008 
+77.	Democrat		(13192)		Jim Clyburn: 0.00008 
+78.	Democrat		(117193)		Hakeem Jeffries: 0.00008 
+79.	Democrat		(31643)		Ann Kirkpatrick: 0.00008 
+80.	Republican		(91612)		Rand Paul: 0.00008 
+81.	Democrat		(13340)		Mazie Hirono: 0.00008 
+82.	Democrat		(32827)		Chellie Pingree: 0.00008 
+83.	Democrat		(117188)		Kyrsten Sinema: 0.00008 
+84.	Republican		(13311)		Kay Granger: 0.00008 
+85.	Republican		(13641)		Fred Upton: 0.00007 
+86.	Republican		(12990)		John Barrasso: 0.00007 
+87.	Democrat		(13273)		Anna Eshoo: 0.00007 
+88.	Republican		(31682)		Bill Cassidy: 0.00007 
+89.	Democrat		(284873)		Ro Khanna: 0.00007 
+90.	Republican		(97551)		Steven Daines: 0.00007 
+91.	Democrat		(99225)		Brad Schneider: 0.00007 
+92.	Republican		(159469)		Thom Tillis: 0.00007 
+93.	Republican		(13358)		Darrell Issa: 0.00007 
+94.	Democrat		(77684)		Kathleen Rice: 0.00007 
+95.	Democrat		(13461)		Jerry McNerney: 0.00006 
+96.	Republican		(13460)		Cathy Mcmorris Rodgers: 0.00006 
+97.	Democrat		(117214)		Sean Maloney: 0.00006 
+98.	Republican		(57883)		Lee Zeldin: 0.00006 
+99.	Republican		(13680)		Don Young: 0.00006 
+100.	Republican		(13089)		John Boozman: 0.00006 
+101.	Democrat		(13518)		Ed Perlmutter: 0.00006 
+102.	Republican		(96165)		Tom Reed: 0.00006 
+103.	Republican		(13571)		Steve Scalise: 0.00006 
+104.	Democrat		(13496)		Richard Neal: 0.00006 
+105.	Democrat		(416261)		Raphael Warnock: 0.00006 
+106.	Republican		(157014)		Elise Stefanik: 0.00006 
+107.	Republican		(13448)		Michael T McCaul: 0.00006 
+108.	Democrat		(416189)		Mark Kelly: 0.00006 
+109.	Democrat		(13510)		Frank Pallone: 0.00006 
+110.	Democrat		(386430)		Jon Ossoff: 0.00006 
+111.	Republican		(30655)		John Kennedy: 0.00006 
+112.	Democrat		(96625)		Ami Bera: 0.00006 
+113.	Republican		(91639)		Todd Young: 0.00006 
+114.	Democrat		(284902)		Josh Gottheimer: 0.00006 
+115.	Democrat		(13409)		Barbara Lee: 0.00005 
+116.	Democrat		(99518)		Tom Suozzi: 0.00005 
+117.	Democrat		(13588)		Brad Sherman: 0.00005 
+118.	Republican		(91593)		John Hoeven: 0.00005 
+119.	Republican		(91604)		Mike Lee: 0.00005 
+120.	Democrat		(13455)		James P McGovern: 0.00005 
+121.	Republican		(29340)		Steve Stivers: 0.00005 
+122.	Democrat		(43854)		Suzan DelBene: 0.00005 
+123.	Democrat		(13240)		Rosa L Delauro: 0.00005 
+124.	Republican		(13484)		Jerry Moran: 0.00005 
+125.	Republican		(43645)		Roger Williams: 0.00005 
+126.	Democrat		(43446)		Ann McLane Kuster: 0.00005 
+127.	Democrat		(13215)		Joe Courtney: 0.00005 
+128.	Republican		(13179)		Steve Chabot: 0.00005 
+129.	Democrat		(13402)		John B Larson: 0.00005 
+130.	Republican		(13079)		Marsha Blackburn: 0.00005 
+131.	Democrat		(13572)		Jan Schakowsky: 0.00005 
+132.	Republican		(29334)		David Schweikert: 0.00005 
+133.	Democrat		(13466)		Gregory W Meeks: 0.00005 
+134.	Democrat		(30321)		Dina Titus: 0.00005 
+135.	Democrat		(13442)		Doris Okada Matsui: 0.00005 
+136.	Democrat		(13528)		David Eugene Price: 0.00005 
+137.	Republican		(139907)		Kelly Loeffler: 0.00005 
+138.	Democrat		(13238)		Diana Degette: 0.00005 
+139.	Republican		(13669)		Joe Wilson: 0.00005 
+140.	Republican		(13502)		Devin Nunes: 0.00005 
+141.	Republican		(13117)		Kevin Patrick Brady: 0.00005 
+142.	Democrat		(43069)		Zoe Lofgren: 0.00005 
+143.	Republican		(96423)		Ken Buck: 0.00005 
+144.	Republican		(13648)		Tim Walberg: 0.00005 
+145.	Republican		(188940)		Ben Sasse: 0.00005 
+146.	Democrat		(13249)		Lloyd Doggett: 0.00005 
+147.	Democrat		(13596)		Adam Smith: 0.00005 
+148.	Democrat		(284890)		Raja Krishnamoorthi: 0.00005 
+149.	Democrat		(29964)		Gerry Connolly: 0.00005 
+150.	Democrat		(117231)		Cheri Bustos: 0.00004 
+151.	Other		(34107)		Angus King: 0.00004 
+152.	Democrat		(13401)		Rick Larsen: 0.00004 
+153.	Democrat		(91566)		David Cicilline: 0.00004 
+154.	Democrat		(284869)		Maggie Hassan: 0.00004 
+155.	Republican		(42333)		Liz Cheney: 0.00004 
+156.	Republican		(13134)		Vernon G Buchanan: 0.00004 
+157.	Republican		(13145)		Ken Calvert: 0.00004 
+158.	Democrat		(13381)		Ron Kind: 0.00004 
+159.	Republican		(96092)		Ann L Wagner: 0.00004 
+160.	Republican		(13456)		Patrick T McHenry: 0.00004 
+161.	Democrat		(91496)		Ted Deutch: 0.00004 
+162.	Democrat		(13643)		Nydia Margarita Velázquez: 0.00004 
+163.	Democrat		(13661)		Peter Welch: 0.00004 
+164.	Democrat		(133538)		Brian Schatz: 0.00004 
+165.	Republican		(42583)		Adam Kinzinger: 0.00004 
+166.	Republican		(118177)		Deb Fischer: 0.00004 
+167.	Republican		(416705)		Christopher L Jacobs: 0.00004 
+168.	Democrat		(45074)		Terri Sewell: 0.00004 
+169.	Republican		(13305)		Louie Gohmert: 0.00004 
+170.	Republican		(13549)		Hal Rogers: 0.00004 
+171.	Democrat		(117153)		Julia Brownley: 0.00004 
+172.	Democrat		(416271)		John W Hickenlooper: 0.00004 
+173.	Democrat		(13224)		Henry Cuellar: 0.00004 
+174.	Democrat		(13511)		Bill Pascrell: 0.00004 
+175.	Democrat		(13630)		Mike Thompson: 0.00004 
+176.	Democrat		(13655)		Maxine Waters: 0.00004 
+177.	Republican		(13245)		Mario Diaz-Balart: 0.00004 
+178.	Republican		(97129)		Andy Barr: 0.00004 
+179.	Democrat		(13629)		Bennie Thompson: 0.00004 
+180.	Democrat		(13432)		Stephen F Lynch: 0.00004 
+181.	Democrat		(13566)		Linda T Sánchez: 0.00004 
+182.	Democrat		(13449)		Betty McCollum: 0.00003 
+183.	Democrat		(223581)		Seth Moulton: 0.00003 
+184.	Democrat		(91557)		Karen Bass: 0.00003 
+185.	Democrat		(13569)		John Sarbanes: 0.00003 
+186.	Democrat		(41137)		John Garamendi: 0.00003 
+187.	Democrat		(59342)		Lois Frankel: 0.00003 
+188.	Republican		(31671)		Andy Harris: 0.00003 
+189.	Democrat		(13500)		Eleanor Holmes Norton: 0.00003 
+190.	Democrat		(13075)		Sanford Dixon Bishop Jr: 0.00003 
+191.	Democrat		(13560)		Bobby L Rush: 0.00003 
+192.	Democrat		(117216)		Val Demings: 0.00003 
+193.	Republican		(13136)		Michael C Burgess: 0.00003 
+194.	Republican		(13201)		Tom Cole: 0.00003 
+195.	Democrat		(30304)		Jackie Speier: 0.00003 
+196.	Democrat		(13559)		Dutch Ruppersberger: 0.00003 
+197.	Republican		(417285)		Tommy Tuberville: 0.00003 
+198.	Democrat		(13317)		Raúl Grijalva: 0.00003 
+199.	Republican		(13313)		Sam Graves: 0.00003 
+200.	Democrat		(29633)		Paul David Tonko: 0.00003 
