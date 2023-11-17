@@ -11,8 +11,8 @@ The code for my elective project, supervised by [Michele Coscia](https://www.mic
     - [Data](#data)
     - [Data description](#data-description)
     - [Initializing the database](#initializing-the-database)
-    - [Exploratory Data Analysis](#exploratory-data-analysis)
     - [Node Vector Distance for ideology estimation](#node-vector-distance-for-ideology-estimation)
+    - [Exploratory Data Analysis](#exploratory-data-analysis)
   - [Issues](#issues)
 
 <!-- [scripts/littlesis-graph-exploration.ipynb](scripts/littlesis-graph-exploration.ipynb) is a good place to start if you want to explore the data. -->
@@ -47,8 +47,6 @@ Since I have data from many sources I decided to combine the information I need 
 python scripts/initialize-database.py
 ```
 
-### Exploratory Data Analysis
-
 ### Node Vector Distance for ideology estimation
 
 In order to perform the node vector distance experiment you need to run the following command:
@@ -68,6 +66,10 @@ Note that it have a runningtime of approx 6 hours on a Macbook Air M1. When the 
 ![](assets/1d-projection.png)
 ![](assets/2d-projection.png)
 ![](assets/voteview-nominate-dim1.png)
+
+### Exploratory Data Analysis
+
+As seen in the section above, the node vector distance experiment requires a lot of time to run and does not give good results. The assumption was that the donations where a good indicator of ideology, but it seems that node vector calculations are not able to capture this. Therefore I decided to do some exploratory data analysis to see if I could find reasons in the data for this.
 
 ## Issues
 
