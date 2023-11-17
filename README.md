@@ -51,6 +51,24 @@ python scripts/initialize-database.py
 
 ### Node Vector Distance for ideology estimation
 
+In order to perform the node vector distance experiment you need to run the following command:
+
+```bash
+python DonorIdeo/nvd.py
+```
+
+This code will break at a certain point because it needs the results from a julie script that is able to calculate distances between vectors much faster. This can be executed by running the following command:
+
+```bash
+julia scripts/nvd.jl
+```
+
+Note that it have a runningtime of approx 6 hours on a Macbook Air M1. When the julia script is done, you can run the python script `DonorIdeo/nvd.py` again and it will finish. It will add information to the `database.csv` file and create the following three plots in the `assets` folder.
+
+![](assets/1d-projection.png)
+![](assets/2d-projection.png)
+![](assets/voteview-nominate-dim1.png)
+
 ## Issues
 
 If you encounter any problems,
