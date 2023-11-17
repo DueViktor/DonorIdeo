@@ -41,22 +41,12 @@ def build_littlesis_graph() -> Tuple[nx.Graph, nx.Graph]:
     return G, G_largest
 
 
-def politicians_in_graph(politicians: List, graph: nx.Graph):
+def politicians_in_graph(politicians: List[Tuple[str, int]], graph: nx.Graph):
     """Check whether the politicians are in the graph"""
     politicians_found = 0
-    for politician in politicians:
-        try:
-            littlesis_id: int = politician["ids"]["littlesis"]
-        except KeyError:
-            print(
-                f"Politician {politician['voteview_info']['bioname']} has no LittleSis ID."
-            )
-            continue
-
+    for name, littlesis_id in politicians:
         if littlesis_id not in graph.nodes:
-            print(
-                f"Politician {politician['voteview_info']['bioname']} ({littlesis_id}) not found in the biggest connected component."
-            )
+            print(f"{name} not found in the biggest connected component.")
         else:
             politicians_found += 1
 
@@ -66,11 +56,17 @@ def politicians_in_graph(politicians: List, graph: nx.Graph):
 
 
 if __name__ == "__main__":
+    import pandas as pd
+
+    from DonorIdeo.config import DATABASE_PATH
+
     # Build the graph
     G, G_largest = build_littlesis_graph()
 
     # Load the politicians
-    politicians = read_json(SOURCES_DATA_DIR / "politicians_117.json", verbose=True)
+    politicians: Tuple[str, int] = pd.read_csv(DATABASE_PATH)[
+        ["bioname", "littlesis"]
+    ].values.tolist()
 
     # Check whether the politicians are in the graph
-    politicians_in_graph(politicians, G_largest)
+    politicians_in_graph(politicians=politicians, graph=G_largest)
