@@ -2,10 +2,6 @@
 
 # Donors And Ideologies
 
-The code for my elective project, supervised by [Michele Coscia](https://www.michelecoscia.com/).
-
-## How to use
-
 - [Donors And Ideologies](#donors-and-ideologies)
   - [How to use](#how-to-use)
     - [Data](#data)
@@ -14,6 +10,12 @@ The code for my elective project, supervised by [Michele Coscia](https://www.mic
     - [Node Vector Distance for ideology estimation](#node-vector-distance-for-ideology-estimation)
     - [Exploratory Data Analysis](#exploratory-data-analysis)
   - [Issues](#issues)
+
+The code for my elective project, supervised by [Michele Coscia](https://www.michelecoscia.com/).
+
+## How to use
+
+It should be noted that there are a kind of *timeline* to the code as this is series of experiments. I've tried to limit the need for running the code in a specific order, but it is still recommended to follow the order below.
 
 ### Data
 
@@ -59,15 +61,13 @@ This code will break at a certain point because it needs the results from a juli
 julia scripts/nvd.jl
 ```
 
-Note that it have a runningtime of approx 6 hours on a Macbook Air M1. When the julia script is done, you can run the python script `DonorIdeo/nvd.py` again and it will finish. It will add information to the `database.csv` file and create the following three plots in the `assets` folder.
-
-![](assets/1d-projection.png)
-![](assets/2d-projection.png)
-![](assets/voteview-nominate-dim1.png)
+Note that it have a runningtime of approx 6 hours on a Macbook Air M1. When the julia script is done, you can run the python script `DonorIdeo/nvd.py` again and it will finish. It will add information to the `database.csv` file and create three plots in the `assets` folder.
 
 ### Exploratory Data Analysis
 
-As seen in the section above, the node vector distance experiment requires a lot of time to run and does not give good results. The assumption was that the donations where a good indicator of ideology, but it seems that node vector calculations are not able to capture this. Therefore I decided to do some exploratory data analysis to see if I could find reasons in the data for this.
+As seen from the results in the section above, the node vector distance experiment requires a lot of time to run and does not give good results. The assumption was that the donations where a good indicator of ideology, but it seems that node vector calculations are not able to capture this. Therefore I decided to do some exploratory data analysis to see if I could find reasons in the data for this.
+
+The `DonorIdeo/eda.ipynb` notebook contains the code for the exploratory data analysis. It will create a number of plots in the `assets` folder. For a better explanation of the plots, methods and the results, please see the [report](report.pdf).
 
 ## Issues
 

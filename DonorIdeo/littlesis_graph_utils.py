@@ -1,8 +1,9 @@
 from typing import Dict, List, Tuple
 
 import networkx as nx
+import pandas as pd
 
-from DonorIdeo.config import SOURCES_DATA_DIR
+from DonorIdeo.config import DATABASE_PATH, SOURCES_DATA_DIR
 from DonorIdeo.json_utils import read_json
 
 
@@ -56,10 +57,9 @@ def politicians_in_graph(politicians: List[Tuple[str, int]], graph: nx.Graph):
 
 
 def collect_donations_to(
-    politicians: List[int], graph: nx.Graph
+    politicians: List[int], graph: nx.Graph, save_total_to_database: bool = True
 ) -> Dict[int, Dict[int, int]]:
     """Collect the donations to the politicians in the graph
-
 
     Returns:
         Dict: A dictionary with the politicians as keys and a dictionary of the donations as values and the keys as the donors
@@ -84,6 +84,28 @@ def collect_donations_to(
             # Add the donation to the dictionary
             donations_to_politician[littlesis_id][donor_id] = donation_amount
 
+    if save_total_to_database:
+        print("Saving the total donations to the database...")
+        database: pd.DataFrame = pd.read_csv(
+            DATABASE_PATH, dtype={"littlesis": "Int64"}
+        )
+        for politician, donations in donations_to_politician.items():
+            total_donations: int = sum(donations.values())
+            # sum of donations to the politician
+            database.loc[
+                database["littlesis"] == politician, "donations-in-total"
+            ] = total_donations
+            # the keys of the donations
+            donation_keys: str = ",".join([str(key) for key in donations.keys()])
+            database.loc[
+                database["littlesis"] == politician, "donations-from"
+            ] = donation_keys
+            # the number of donations
+            database.loc[database["littlesis"] == politician, "donations-count"] = len(
+                donations.keys()
+            )
+        database.to_csv(DATABASE_PATH, index=False)
+
     return donations_to_politician
 
 
@@ -97,10 +119,10 @@ if __name__ == "__main__":
     G, G_largest = build_littlesis_graph()
 
     # Check whether the politicians are in the graph
-    # politicians: List[Tuple[str, int]] = pd.read_csv(DATABASE_PATH)[
-    #     ["bioname", "littlesis"]
-    # ].values.tolist()
-    # politicians_in_graph(politicians=politicians, graph=G_largest)
+    politicians: List[Tuple[str, int]] = pd.read_csv(DATABASE_PATH)[
+        ["bioname", "littlesis"]
+    ].values.tolist()
+    politicians_in_graph(politicians=politicians, graph=G_largest)
 
     # Collect the donations to the politicians in the graph
     littlesis_ids: List[int] = (

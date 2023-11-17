@@ -115,8 +115,10 @@ def add_custom_info(db: pd.DataFrame) -> pd.DataFrame:
     db["projection-2d_x"] = [None for _ in range(len(db))]
     db["projection-2d_y"] = [None for _ in range(len(db))]
 
-    # donations in total
+    # donations
     db["donations-in-total"] = [0 for _ in range(len(db))]
+    db["donations-from"] = ["" for _ in range(len(db))]
+    db["donations-count"] = [0 for _ in range(len(db))]
 
     return db
 
