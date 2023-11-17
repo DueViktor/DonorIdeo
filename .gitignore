@@ -6,3 +6,4 @@ poetry.lock
 
 # data folders
 data/nvd/*.csv
+data/sources/*.json
