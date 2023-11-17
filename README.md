@@ -72,9 +72,11 @@ The `DonorIdeo/eda.ipynb` notebook contains the code for the exploratory data an
 
 ## Upcoming
 
-- [ ] Currently the node vector consider the entire network. This makes theoretical sense, but reducing the size of the vectors to only consider the donors directly connected to the legislator might improve the results. The vectors will be become drastically smaller and the calculations will be much faster. I can implement this in python.
+- [x] Currently the node vector consider the entire network. This makes theoretical sense, but reducing the size of the vectors to only consider the donors directly connected to the legislator might improve the results. The vectors will be become drastically smaller and the calculations will be much faster. I can implement this in python.
+  - [ ] Some of the code exist in `misc.ipynb`. Implement correctly and clean into `DonorIdeo/nvd.py`.
 - [ ] Extend `EDA.ipynb` to include more plots and analysis.
 - [ ] Add documentation to the code.
+- [ ] Mutual information between sets of donors split by party. Perhaps just a simple percentual overlap could be enough.
 
 ## Issues
 
