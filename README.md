@@ -10,6 +10,7 @@ The code for my elective project, supervised by [Michele Coscia](https://www.mic
   - [How to use](#how-to-use)
     - [Data](#data)
     - [Data description](#data-description)
+    - [Initializing the database](#initializing-the-database)
     - [Exploratory Data Analysis](#exploratory-data-analysis)
     - [Node Vector Distance for ideology estimation](#node-vector-distance-for-ideology-estimation)
   - [Issues](#issues)
@@ -37,6 +38,14 @@ Congress-legistlator data can be downloaded here: [github.com/unitedstates/congr
 [data/sources/voteview-HS117_members.csv](data/voteview-HS117_members.csv) contains the ideology scores for the members of the 117th House of Representatives taken from [voteview.com](https://voteview.com/).
 
 [data/sources/legislators-historical.json](data/sources/legislators-historical.json) contains data about the members of congress. It is taken from [github.com/unitedstates/congress-legislators](https://github.com/unitedstates/congress-legislators/blob/main/legislators-historical.yaml).
+
+### Initializing the database
+
+Since I have data from many sources I decided to combine the information I need in a single "database". It is not a real database, but a `database.csv` with the neccesary information. The database is initialized by running the following command:
+
+```bash
+python scripts/initialize-database.py
+```
 
 ### Exploratory Data Analysis
 
