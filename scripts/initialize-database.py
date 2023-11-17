@@ -99,6 +99,22 @@ def add_custom_info(db: pd.DataFrame) -> pd.DataFrame:
     # transform the party_code to a string
     db["party"] = db["party_code"].apply(code_to_party)
 
+    # add plotting color for each party
+    def party_to_color(value: str):
+        if value == "Democrat":
+            return "red"
+        elif value == "Republican":
+            return "blue"
+        else:
+            return "gray"
+
+    db["color"] = db["party"].apply(party_to_color)
+
+    # prepare for the projection
+    db["projection-1d"] = [None for _ in range(len(db))]
+    db["projection-2d_x"] = [None for _ in range(len(db))]
+    db["projection-2d_y"] = [None for _ in range(len(db))]
+
     return db
 
 

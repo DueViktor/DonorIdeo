@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 import networkx as nx
 
@@ -55,18 +55,65 @@ def politicians_in_graph(politicians: List[Tuple[str, int]], graph: nx.Graph):
     )
 
 
+def collect_donations_to(
+    politicians: List[int], graph: nx.Graph
+) -> Dict[int, Dict[int, int]]:
+    """Collect the donations to the politicians in the graph
+
+
+    Returns:
+        Dict: A dictionary with the politicians as keys and a dictionary of the donations as values and the keys as the donors
+    """
+    # fill the dictionary with the politicians
+    donations_to_politician: Dict[int, Dict[int, int]] = {
+        politician: {} for politician in politicians
+    }
+
+    for littlesis_id in politicians:
+        for neighbor in graph.neighbors(littlesis_id):
+            category_id: int = graph[littlesis_id][neighbor]["category_id"]
+            donation_amount: int = graph[littlesis_id][neighbor]["amount"]
+
+            # help to understand the category_id limitation: https://littlesis.org/help/relationships
+            if category_id not in [5, 7] or donation_amount is None:
+                continue
+
+            # Get the donor
+            donor_id = graph.nodes[neighbor]["id"]
+
+            # Add the donation to the dictionary
+            donations_to_politician[littlesis_id][donor_id] = donation_amount
+
+    return donations_to_politician
+
+
 if __name__ == "__main__":
     import pandas as pd
 
-    from DonorIdeo.config import DATABASE_PATH
+    from DonorIdeo.config import DATABASE_PATH, TEMPORARY_DATA_DIR
+    from DonorIdeo.json_utils import save_json
 
     # Build the graph
     G, G_largest = build_littlesis_graph()
 
-    # Load the politicians
-    politicians: Tuple[str, int] = pd.read_csv(DATABASE_PATH)[
-        ["bioname", "littlesis"]
-    ].values.tolist()
-
     # Check whether the politicians are in the graph
-    politicians_in_graph(politicians=politicians, graph=G_largest)
+    # politicians: List[Tuple[str, int]] = pd.read_csv(DATABASE_PATH)[
+    #     ["bioname", "littlesis"]
+    # ].values.tolist()
+    # politicians_in_graph(politicians=politicians, graph=G_largest)
+
+    # Collect the donations to the politicians in the graph
+    littlesis_ids: List[int] = (
+        pd.read_csv(DATABASE_PATH, dtype={"littlesis": "Int64"})["littlesis"]
+        .dropna()
+        .values.tolist()
+    )
+    donations_to_politician: Dict[int, Dict[int, int]] = collect_donations_to(
+        politicians=littlesis_ids, graph=G_largest
+    )
+
+    save_json(
+        data=donations_to_politician,
+        path=TEMPORARY_DATA_DIR / "donations.json",
+        verbose=True,
+    )

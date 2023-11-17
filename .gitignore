@@ -7,3 +7,5 @@ poetry.lock
 # data folders
 data/nvd/*.csv
 data/sources/*.json
+data/temporary/*.json
+data/temporary/*.csv
