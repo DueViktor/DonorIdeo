@@ -9,6 +9,7 @@
     - [Initializing the database](#initializing-the-database)
     - [Node Vector Distance for ideology estimation](#node-vector-distance-for-ideology-estimation)
     - [Exploratory Data Analysis](#exploratory-data-analysis)
+  - [Upcoming](#upcoming)
   - [Issues](#issues)
 
 The code for my elective project, supervised by [Michele Coscia](https://www.michelecoscia.com/).
@@ -68,6 +69,12 @@ Note that it have a runningtime of approx 6 hours on a Macbook Air M1. When the 
 As seen from the results in the section above, the node vector distance experiment requires a lot of time to run and does not give good results. The assumption was that the donations where a good indicator of ideology, but it seems that node vector calculations are not able to capture this. Therefore I decided to do some exploratory data analysis to see if I could find reasons in the data for this.
 
 The `DonorIdeo/eda.ipynb` notebook contains the code for the exploratory data analysis. It will create a number of plots in the `assets` folder. For a better explanation of the plots, methods and the results, please see the [report](report.pdf).
+
+## Upcoming
+
+- [ ] Currently the node vector consider the entire network. This makes theoretical sense, but reducing the size of the vectors to only consider the donors directly connected to the legislator might improve the results. The vectors will be become drastically smaller and the calculations will be much faster. I can implement this in python.
+- [ ] Extend `EDA.ipynb` to include more plots and analysis.
+- [ ] Add documentation to the code.
 
 ## Issues
 

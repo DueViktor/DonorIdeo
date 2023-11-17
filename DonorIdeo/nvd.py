@@ -13,7 +13,6 @@ The following methods for dimensionality have been tested:
 - UMAP
 
 """
-
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -190,6 +189,7 @@ def add_projections_to_database(
     projection_1d: np.ndarray,
     projection_2d: np.ndarray,
     politician_littlesis_ids: List[str],
+    prefix: str = "",
 ) -> None:
     """IMPORTANT: I assume that the order of the politicians in the projection is the same"""
     database = pd.read_csv(DATABASE_PATH, dtype={"littlesis": "Int64"})
@@ -202,13 +202,13 @@ def add_projections_to_database(
     # Add the projections to the database
     for littlesis_id, projection_1d, projection_2d in politicians_with_projections:
         database.loc[
-            database["littlesis"] == int(littlesis_id), "projection-1d"
+            database["littlesis"] == int(littlesis_id), f"{prefix}projection-1d"
         ] = projection_1d
         database.loc[
-            database["littlesis"] == int(littlesis_id), "projection-2d_x"
+            database["littlesis"] == int(littlesis_id), f"{prefix}projection-2d_x"
         ] = projection_2d[0]
         database.loc[
-            database["littlesis"] == int(littlesis_id), "projection-2d_y"
+            database["littlesis"] == int(littlesis_id), f"{prefix}projection-2d_y"
         ] = projection_2d[1]
 
     # Save the database
@@ -280,10 +280,10 @@ def visualize_projections() -> None:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         autosize=False,
-        # margin=dict(l=0, r=0, b=0, t=30, pad=4),
     )
 
-    fig.update_yaxes(zerolinecolor="black", showticklabels=False)
+    fig.update_yaxes(showticklabels=True, range=[-1, 1])
+    fig.update_xaxes(showticklabels=True, range=[-1, 1])
     fig.write_image(ASSETS_DIR / "2d-projection.png")
 
     # Plot the 1D projections
@@ -327,10 +327,10 @@ def visualize_projections() -> None:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         autosize=False,
-        # margin=dict(l=0, r=0, b=0, t=30, pad=4),
     )
 
     fig.update_yaxes(zerolinecolor="black", showticklabels=False)
+    fig.update_xaxes(range=[-1, 1])
     fig.write_image(ASSETS_DIR / "1d-projection.png")
 
     # Plot the 1D projections
@@ -374,12 +374,69 @@ def visualize_projections() -> None:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         autosize=False,
-        # margin=dict(l=0, r=0, b=0, t=30, pad=4),
     )
 
     fig.update_yaxes(showticklabels=False)
     fig.update_xaxes(range=[-1, 1])
     fig.write_image(ASSETS_DIR / "voteview-nominate-dim1.png")
+
+
+def reduced_vector_experiment():
+    df = pd.read_csv(TEMPORARY_DATA_DIR / "nvd-node_attributes.csv", index_col=0)
+
+    # How many columns sum to 0?
+    cols_with_no_information = df.sum(axis=0) == 0
+    cols_with_no_information = cols_with_no_information[
+        cols_with_no_information
+    ].index.values.tolist()
+
+    # remove them
+    df = df.drop(columns=cols_with_no_information)
+
+    # How many rows sum to 0?
+    rows_with_no_information = df.sum(axis=1) == 0
+    rows_with_no_information = rows_with_no_information[
+        rows_with_no_information
+    ].index.values.tolist()
+
+    # remove them
+    df = df.drop(index=rows_with_no_information)
+
+    reduced_distance_matrix = np.zeros((df.shape[1], df.shape[1]))
+
+    for i, col_1 in enumerate(df.columns):
+        for j, col_2 in enumerate(df.columns):
+            if i >= j:
+                continue
+
+            # consider col_1 and col_2 as vectors
+            # calculate the euclidean distance between them
+
+            euclidean_distance = np.linalg.norm(df[col_1] - df[col_2])
+
+            reduced_distance_matrix[i, j] = euclidean_distance
+            reduced_distance_matrix[j, i] = euclidean_distance
+
+    # Project the distance matrix to 2D and scale the values to -1 to 1
+    tsne_2 = TSNE(n_components=2, metric="precomputed", init="random", random_state=42)
+    X_embedded_2 = project_and_scale(
+        distance_matrix=reduced_distance_matrix, model=tsne_2
+    )
+
+    # Project the distance matrix to 1D and scale the values to -1 to 1
+    tsne_1 = TSNE(n_components=1, metric="precomputed", init="random", random_state=42)
+    X_embedded_1 = project_and_scale(
+        distance_matrix=reduced_distance_matrix, model=tsne_1
+    )
+
+    # Update database.csv with the projection for each politician
+    politician_ids: List[str] = df.columns.values.tolist()
+    add_projections_to_database(
+        projection_1d=X_embedded_1,
+        projection_2d=X_embedded_2,
+        politician_littlesis_ids=politician_ids,
+        prefix="reduced-",
+    )
 
 
 if __name__ == "__main__":
@@ -436,3 +493,5 @@ if __name__ == "__main__":
     )
 
     visualize_projections()
+
+    reduced_vector_experiment()

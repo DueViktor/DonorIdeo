@@ -117,7 +117,7 @@ def add_custom_info(db: pd.DataFrame) -> pd.DataFrame:
 
     # donations
     db["donations-in-total"] = [0 for _ in range(len(db))]
-    db["donations-from"] = ["" for _ in range(len(db))]
+    db["donations-from"] = ["<EMPTY>" for _ in range(len(db))]
     db["donations-count"] = [0 for _ in range(len(db))]
 
     return db

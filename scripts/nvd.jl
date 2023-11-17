@@ -30,6 +30,7 @@ for i in range(2, size_of_names)
         write(f, "$timestamp\n")
     end
 
+    # iterate over the names of the dataframe except the first column
     for j in range(2, size_of_names)
 
         # The distance is symmetric, so we only need to calculate it once
