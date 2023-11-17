@@ -82,6 +82,8 @@ def add_littlesis_info(db: pd.DataFrame) -> pd.DataFrame:
         except KeyError:
             continue
 
+    db["littlesis"] = db["littlesis"].astype("Int64")
+
     return db
 
 
@@ -107,4 +109,4 @@ if __name__ == "__main__":
     db: pd.DataFrame = initialize_with_voteview()
     db: pd.DataFrame = add_littlesis_info(db)
     db: pd.DataFrame = add_custom_info(db)
-    db.to_csv(DATA_DIR / "db.csv", index=False)
+    db.to_csv(DATA_DIR / "database.csv", index=False)
