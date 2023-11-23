@@ -218,6 +218,7 @@ def add_projections_to_database(
 def visualize_projections() -> None:
     """Adding projections to the database is a prerequisite for this function.
     The function will generate 3 plots and save them to assets/"""
+    print("Running visualize_projections()")
     import plotly.graph_objects as go
     from plotly.subplots import make_subplots
 
@@ -225,163 +226,168 @@ def visualize_projections() -> None:
     senate: pd.DataFrame = database[database["chamber"] == "Senate"]
     house: pd.DataFrame = database[database["chamber"] == "House"]
 
-    # Plot the 2D projections
-    fig = make_subplots(
-        rows=1,
-        cols=2,
-        shared_xaxes=True,
-        subplot_titles=(
-            "Senate",
-            "House",
-        ),
-    )
-
-    fig.add_trace(
-        go.Scatter(
-            x=senate["projection-2d_x"],
-            y=senate["projection-2d_y"],
-            mode="markers",
-            marker=dict(
-                size=10,
-                color=senate["color"],
-                colorscale="RdBu",
-                showscale=False,
+    for prefix in ["", "reduced-"]:
+        # Plot the 2D projections
+        fig = make_subplots(
+            rows=1,
+            cols=2,
+            shared_xaxes=True,
+            subplot_titles=(
+                "Senate",
+                "House",
             ),
-            text=senate["bioname"],
-        ),
-        row=1,
-        col=1,
-    )
+        )
 
-    fig.add_trace(
-        go.Scatter(
-            x=house["projection-2d_x"],
-            y=house["projection-2d_y"],
-            mode="markers",
-            marker=dict(
-                size=10,
-                color=house["color"],
-                colorscale="RdBu",
-                showscale=False,
+        fig.add_trace(
+            go.Scatter(
+                x=senate[f"{prefix}projection-2d_x"],
+                y=senate[f"{prefix}projection-2d_y"],
+                mode="markers",
+                marker=dict(
+                    size=10,
+                    color=senate["color"],
+                    colorscale="RdBu",
+                    showscale=False,
+                ),
+                text=senate["bioname"],
             ),
-            text=house["bioname"],
-        ),
-        row=1,
-        col=2,
-    )
+            row=1,
+            col=1,
+        )
 
-    fig.update_layout(
-        title="2D Projection of the Senate and House of Representatives",
-        xaxis_title="",
-        yaxis_title="",
-        height=600,
-        width=1000,
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        autosize=False,
-    )
+        fig.add_trace(
+            go.Scatter(
+                x=house[f"{prefix}projection-2d_x"],
+                y=house[f"{prefix}projection-2d_y"],
+                mode="markers",
+                marker=dict(
+                    size=10,
+                    color=house["color"],
+                    colorscale="RdBu",
+                    showscale=False,
+                ),
+                text=house["bioname"],
+            ),
+            row=1,
+            col=2,
+        )
 
-    fig.update_yaxes(showticklabels=True, range=[-1, 1])
-    fig.update_xaxes(showticklabels=True, range=[-1, 1])
-    fig.write_image(ASSETS_DIR / "2d-projection.png")
+        fig.update_layout(
+            title="2D Projection of the Senate and House of Representatives",
+            xaxis_title="",
+            yaxis_title="",
+            height=600,
+            width=1000,
+            showlegend=False,
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            autosize=False,
+        )
 
-    # Plot the 1D projections
-    fig = make_subplots(
-        rows=2,
-        cols=1,
-        shared_xaxes=True,
-        subplot_titles=(
-            "Senate",
-            "House",
-        ),
-    )
+        fig.update_yaxes(showticklabels=True, range=[-1, 1])
+        fig.update_xaxes(showticklabels=True, range=[-1, 1])
+        fig.write_image(ASSETS_DIR / f"{prefix}2d-projection.png")
 
-    fig.add_trace(
-        go.Scatter(
-            x=senate["projection-1d"],
-            mode="markers",
-            marker_color=senate["color"],
-        ),
-        row=1,
-        col=1,
-    )
+        # Plot the 1D projections
+        fig = make_subplots(
+            rows=2,
+            cols=1,
+            shared_xaxes=True,
+            subplot_titles=(
+                "Senate",
+                "House",
+            ),
+        )
 
-    fig.add_trace(
-        go.Scatter(
-            x=house["projection-1d"],
-            mode="markers",
-            marker_color=house["color"],
-        ),
-        row=2,
-        col=1,
-    )
+        fig.add_trace(
+            go.Scatter(
+                x=senate[f"{prefix}projection-1d"],
+                mode="markers",
+                marker_color=senate["color"],
+            ),
+            row=1,
+            col=1,
+        )
 
-    fig.update_layout(
-        title="1D Projection of the Senate and House of Representatives",
-        xaxis_title="",
-        yaxis_title="",
-        height=600,
-        width=1000,
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        autosize=False,
-    )
+        fig.add_trace(
+            go.Scatter(
+                x=house[f"{prefix}projection-1d"],
+                mode="markers",
+                marker_color=house["color"],
+            ),
+            row=2,
+            col=1,
+        )
 
-    fig.update_yaxes(zerolinecolor="black", showticklabels=False)
-    fig.update_xaxes(range=[-1, 1])
-    fig.write_image(ASSETS_DIR / "1d-projection.png")
+        fig.update_layout(
+            title="1D Projection of the Senate and House of Representatives",
+            xaxis_title="",
+            yaxis_title="",
+            height=600,
+            width=1000,
+            showlegend=False,
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            autosize=False,
+        )
 
-    # Plot the 1D projections
-    fig = make_subplots(
-        rows=2,
-        cols=1,
-        shared_xaxes=True,
-        subplot_titles=(
-            "Senate",
-            "House",
-        ),
-    )
+        fig.update_yaxes(zerolinecolor="black", showticklabels=False)
+        fig.update_xaxes(range=[-1, 1])
+        fig.write_image(ASSETS_DIR / f"{prefix}1d-projection.png")
 
-    fig.add_trace(
-        go.Scatter(
-            x=senate["nominate_dim1"],
-            mode="markers",
-            marker_color=senate["color"],
-        ),
-        row=1,
-        col=1,
-    )
+        # Plot the 1D projections
+        fig = make_subplots(
+            rows=2,
+            cols=1,
+            shared_xaxes=True,
+            subplot_titles=(
+                "Senate",
+                "House",
+            ),
+        )
+        # only plot this once
+        if prefix == "":
+            fig.add_trace(
+                go.Scatter(
+                    x=senate["nominate_dim1"],
+                    mode="markers",
+                    marker_color=senate["color"],
+                ),
+                row=1,
+                col=1,
+            )
 
-    fig.add_trace(
-        go.Scatter(
-            x=house["nominate_dim1"],
-            mode="markers",
-            marker_color=house["color"],
-        ),
-        row=2,
-        col=1,
-    )
+            fig.add_trace(
+                go.Scatter(
+                    x=house["nominate_dim1"],
+                    mode="markers",
+                    marker_color=house["color"],
+                ),
+                row=2,
+                col=1,
+            )
 
-    fig.update_layout(
-        title="Voteview nominate_dim1 of the Senate and House of Representatives",
-        xaxis_title="",
-        yaxis_title="",
-        height=600,
-        width=1000,
-        showlegend=False,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        autosize=False,
-    )
+            fig.update_layout(
+                title="Voteview nominate_dim1 of the Senate and House of Representatives",
+                xaxis_title="",
+                yaxis_title="",
+                height=600,
+                width=1000,
+                showlegend=False,
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)",
+                autosize=False,
+            )
 
-    fig.update_yaxes(showticklabels=False)
-    fig.update_xaxes(range=[-1, 1])
-    fig.write_image(ASSETS_DIR / "voteview-nominate-dim1.png")
+            fig.update_yaxes(showticklabels=False)
+            fig.update_xaxes(range=[-1, 1])
+            fig.write_image(ASSETS_DIR / "voteview-nominate-dim1.png")
 
 
 def reduced_vector_experiment():
+    """This function is used to test if the distance matrix can be reduced to a smaller"""
+    print("Running reduced_vector_experiment()")
+
     df = pd.read_csv(TEMPORARY_DATA_DIR / "nvd-node_attributes.csv", index_col=0)
 
     # How many columns sum to 0?
@@ -391,6 +397,7 @@ def reduced_vector_experiment():
     ].index.values.tolist()
 
     # remove them
+    print(f"\tRemoving columns with no information -> {cols_with_no_information}")
     df = df.drop(columns=cols_with_no_information)
 
     # How many rows sum to 0?
@@ -400,7 +407,10 @@ def reduced_vector_experiment():
     ].index.values.tolist()
 
     # remove them
+    tmp_size = df.shape[0]
+    print(f"\tRemoving {len(rows_with_no_information)} rows with no information")
     df = df.drop(index=rows_with_no_information)
+    print(f"\tNew size: {df.shape[0]}. Old size: {tmp_size}")
 
     reduced_distance_matrix = np.zeros((df.shape[1], df.shape[1]))
 
@@ -486,12 +496,13 @@ if __name__ == "__main__":
         .columns[1:]
         .values.tolist()
     )
+
     add_projections_to_database(
         projection_1d=X_embedded_1,
         projection_2d=X_embedded_2,
         politician_littlesis_ids=politician_ids,
     )
 
-    visualize_projections()
-
     reduced_vector_experiment()
+
+    visualize_projections()
