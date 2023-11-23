@@ -111,7 +111,7 @@ def prepare_data_for_julia() -> None:
 
     # 1. collect the donations to the politicians in the graph
     # Build the graph
-    G, G_largest = build_littlesis_graph()
+    _, G_largest = build_littlesis_graph()
 
     # Collect the donations to the politicians in the graph
     littlesis_ids: List[int] = (
@@ -449,6 +449,11 @@ def reduced_vector_experiment():
     )
 
 
+def reduce_graph_to_donor_and_politicians():
+    """Reduces the size of the graph to the minimum size where all donors and politicians are still included"""
+    pass
+
+
 if __name__ == "__main__":
     import os
 
@@ -504,5 +509,7 @@ if __name__ == "__main__":
     )
 
     reduced_vector_experiment()
+
+    reduce_graph_to_donor_and_politicians()
 
     visualize_projections()

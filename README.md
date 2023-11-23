@@ -73,10 +73,12 @@ The `DonorIdeo/eda.ipynb` notebook contains the code for the exploratory data an
 ## Upcoming
 
 - [x] Currently the node vector consider the entire network. This makes theoretical sense, but reducing the size of the vectors to only consider the donors directly connected to the legislator might improve the results. The vectors will be become drastically smaller and the calculations will be much faster. I can implement this in python.
-  - [ ] Some of the code exist in `misc.ipynb`. Implement correctly and clean into `DonorIdeo/nvd.py`.
+  - [x] Some of the code exist in `misc.ipynb`. Implement correctly and clean into `DonorIdeo/nvd.py`.
 - [ ] Extend `EDA.ipynb` to include more plots and analysis.
 - [ ] Add documentation to the code.
 - [ ] Mutual information between sets of donors split by party. Perhaps just a simple percentual overlap could be enough.
+
+- [ ] The subgraph only including politicians and donors actually create a connected component. If we exclude the 6 politicians who haven't received any donations at least. Create network.csv and node_atrtibutes from these and run it through the julia script. The code from create_subgraph.ipynb should be added to nvd.py and removed. Remember to add the same kind of checks for the julia script as you did with the previous iteration of the julia script.
 
 ## Issues
 
