@@ -22,7 +22,7 @@ import pandas as pd
 from sklearn.manifold import TSNE
 from tqdm import tqdm
 
-from DonorIdeo.config import ASSETS_DIR, DATABASE_PATH, TEMPORARY_DATA_DIR
+from DonorIdeo.config import DATABASE_PATH, TEMPORARY_DATA_DIR
 from DonorIdeo.json_utils import save_json
 from DonorIdeo.littlesis_graph_utils import build_littlesis_graph, collect_donations_to
 
@@ -215,175 +215,6 @@ def add_projections_to_database(
     database.to_csv(DATABASE_PATH, index=False)
 
 
-def visualize_projections() -> None:
-    """Adding projections to the database is a prerequisite for this function.
-    The function will generate 3 plots and save them to assets/"""
-    print("Running visualize_projections()")
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
-
-    database: pd.DataFrame = pd.read_csv(DATABASE_PATH, dtype={"littlesis": "Int64"})
-    senate: pd.DataFrame = database[database["chamber"] == "Senate"]
-    house: pd.DataFrame = database[database["chamber"] == "House"]
-
-    for prefix in ["", "reduced-"]:
-        # Plot the 2D projections
-        fig = make_subplots(
-            rows=1,
-            cols=2,
-            shared_xaxes=True,
-            subplot_titles=(
-                "Senate",
-                "House",
-            ),
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=senate[f"{prefix}projection-2d_x"],
-                y=senate[f"{prefix}projection-2d_y"],
-                mode="markers",
-                marker=dict(
-                    size=10,
-                    color=senate["color"],
-                    colorscale="RdBu",
-                    showscale=False,
-                ),
-                text=senate["bioname"],
-            ),
-            row=1,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=house[f"{prefix}projection-2d_x"],
-                y=house[f"{prefix}projection-2d_y"],
-                mode="markers",
-                marker=dict(
-                    size=10,
-                    color=house["color"],
-                    colorscale="RdBu",
-                    showscale=False,
-                ),
-                text=house["bioname"],
-            ),
-            row=1,
-            col=2,
-        )
-
-        fig.update_layout(
-            title="2D Projection of the Senate and House of Representatives",
-            xaxis_title="",
-            yaxis_title="",
-            height=600,
-            width=1000,
-            showlegend=False,
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            autosize=False,
-        )
-
-        fig.update_yaxes(showticklabels=True, range=[-1, 1])
-        fig.update_xaxes(showticklabels=True, range=[-1, 1])
-        fig.write_image(ASSETS_DIR / f"{prefix}2d-projection.png")
-
-        # Plot the 1D projections
-        fig = make_subplots(
-            rows=2,
-            cols=1,
-            shared_xaxes=True,
-            subplot_titles=(
-                "Senate",
-                "House",
-            ),
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=senate[f"{prefix}projection-1d"],
-                mode="markers",
-                marker_color=senate["color"],
-            ),
-            row=1,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=house[f"{prefix}projection-1d"],
-                mode="markers",
-                marker_color=house["color"],
-            ),
-            row=2,
-            col=1,
-        )
-
-        fig.update_layout(
-            title="1D Projection of the Senate and House of Representatives",
-            xaxis_title="",
-            yaxis_title="",
-            height=600,
-            width=1000,
-            showlegend=False,
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            autosize=False,
-        )
-
-        fig.update_yaxes(zerolinecolor="black", showticklabels=False)
-        fig.update_xaxes(range=[-1, 1])
-        fig.write_image(ASSETS_DIR / f"{prefix}1d-projection.png")
-
-        # Plot the 1D projections
-        fig = make_subplots(
-            rows=2,
-            cols=1,
-            shared_xaxes=True,
-            subplot_titles=(
-                "Senate",
-                "House",
-            ),
-        )
-        # only plot this once
-        if prefix == "":
-            fig.add_trace(
-                go.Scatter(
-                    x=senate["nominate_dim1"],
-                    mode="markers",
-                    marker_color=senate["color"],
-                ),
-                row=1,
-                col=1,
-            )
-
-            fig.add_trace(
-                go.Scatter(
-                    x=house["nominate_dim1"],
-                    mode="markers",
-                    marker_color=house["color"],
-                ),
-                row=2,
-                col=1,
-            )
-
-            fig.update_layout(
-                title="Voteview nominate_dim1 of the Senate and House of Representatives",
-                xaxis_title="",
-                yaxis_title="",
-                height=600,
-                width=1000,
-                showlegend=False,
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)",
-                autosize=False,
-            )
-
-            fig.update_yaxes(showticklabels=False)
-            fig.update_xaxes(range=[-1, 1])
-            fig.write_image(ASSETS_DIR / "voteview-nominate-dim1.png")
-
-
 def reduced_vector_experiment():
     """This function is used to test if the distance matrix can be reduced to a smaller"""
     print("Running reduced_vector_experiment()")
@@ -449,11 +280,6 @@ def reduced_vector_experiment():
     )
 
 
-def reduce_graph_to_donor_and_politicians():
-    """Reduces the size of the graph to the minimum size where all donors and politicians are still included"""
-    pass
-
-
 if __name__ == "__main__":
     import os
 
@@ -509,7 +335,3 @@ if __name__ == "__main__":
     )
 
     reduced_vector_experiment()
-
-    reduce_graph_to_donor_and_politicians()
-
-    visualize_projections()
