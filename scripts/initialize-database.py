@@ -102,9 +102,9 @@ def add_custom_info(db: pd.DataFrame) -> pd.DataFrame:
     # add plotting color for each party
     def party_to_color(value: str):
         if value == "Democrat":
-            return "red"
-        elif value == "Republican":
             return "blue"
+        elif value == "Republican":
+            return "red"
         else:
             return "gray"
 
